@@ -35,24 +35,14 @@ export const BattleMonsterTitle = styled(Typography)(() => ({
   marginBottom: '5px',
 }));
 
-export const BattleMonsterName = styled(Typography)(() => ({
-  fontFamily: 'Roboto',
-  fontStyle: 'normal',
-  fontWeight: '400',
+export const BattleMonsterName = styled(BattleMonsterTitle)(() => ({
   fontSize: '22px',
   lineHeight: '26px',
-  color: colors.black,
-  marginBottom: '5px',
 }));
 
-export const AttributeTitle = styled(Typography)(() => ({
-  fontFamily: 'Roboto',
-  fontStyle: 'normal',
-  fontWeight: '400',
+export const AttributeTitle = styled(BattleMonsterTitle)(() => ({
   fontSize: '12px',
   lineHeight: '14px',
-  color: colors.black,
-  marginBottom: '5px',
 }));
 
 export const ProgressBox = styled(Box)(() => ({

@@ -72,4 +72,24 @@ describe('BattleOfMonsters', () => {
       expect(screen.getByText('Mocked Winner wins!')).toBeInTheDocument();
     }, 500);
   });
+
+  it('should show the tie case after the fight', async () => {
+    await battleOfMonstersFactory();
+
+    mockFetch.mockResponse((req) => {
+      if (req.url.includes('battle')) {
+        return Promise.resolve(JSON.stringify({ winner: '', tie: true }));
+      }
+
+      return Promise.reject(new Error('not mapped url'));
+    });
+
+    expect(screen.getByTestId('monster-1')).toBeInTheDocument();
+    await act(() => screen.getByTestId('monster-1').click());
+    await act(() => screen.getByTestId('start-battle-button').click());
+
+    setTimeout(() => {
+      expect(screen.getByText('No one wins!')).toBeInTheDocument();
+    }, 500);
+  });
 });

@@ -48,7 +48,7 @@ const BattleOfMonsters = () => {
     ).json();
 
     if (response.tie) {
-      setWinner('tie');
+      setWinner('No one');
       return;
     }
 
@@ -61,9 +61,7 @@ const BattleOfMonsters = () => {
 
       <MonstersList monsters={monsters} />
 
-      {winner !== null && (
-        <WinnerDisplay text={winner === 'tie' ? 'No one' : winner} />
-      )}
+      {winner && <WinnerDisplay text={winner} />}
 
       <BattleSection>
         <MonsterBattleCard
