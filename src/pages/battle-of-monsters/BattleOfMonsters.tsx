@@ -32,6 +32,12 @@ const BattleOfMonsters = () => {
     dispatch(fetchMonstersData());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (winner) {
+      setWinner(null);
+    }
+  }, [selectedMonster]);
+
   const handleStartBattleClick = async () => {
     const response = await (
       await fetch(`${API_URL}/battle`, {

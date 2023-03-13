@@ -64,7 +64,6 @@ describe('BattleOfMonsters', () => {
 
   it('should show the winner after the fight', async () => {
     await battleOfMonstersFactory();
-    expect(screen.getByTestId('monster-1')).toBeInTheDocument();
     await act(() => screen.getByTestId('monster-1').click());
     await act(() => screen.getByTestId('start-battle-button').click());
 
@@ -84,12 +83,23 @@ describe('BattleOfMonsters', () => {
       return Promise.reject(new Error('not mapped url'));
     });
 
-    expect(screen.getByTestId('monster-1')).toBeInTheDocument();
     await act(() => screen.getByTestId('monster-1').click());
     await act(() => screen.getByTestId('start-battle-button').click());
 
     setTimeout(() => {
       expect(screen.getByText('No one wins!')).toBeInTheDocument();
+    }, 500);
+  });
+
+  it('should clear the winner message select a new monster', async () => {
+    await battleOfMonstersFactory();
+
+    await act(() => screen.getByTestId('monster-1').click());
+    await act(() => screen.getByTestId('start-battle-button').click());
+    await act(() => screen.getByTestId('monster-2').click());
+
+    setTimeout(() => {
+      expect(screen.getByText('Mocked Winner wins!')).not.toBeInTheDocument();
     }, 500);
   });
 });
